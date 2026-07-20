@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Talent & Purpose — Workforce Solutions</title>
+<meta name="description" content="Talent & Purpose is a workforce partner for companies that treat hiring as an engineering problem. Contingent, permanent, and project-based talent across 12 industries." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<div class="preloader" id="preloader" aria-hidden="true">
+  <img src="tnp-logo-v1.png" alt="Talent & Purpose Loading..." />
+  <div class="bar"><i id="loadbar"></i></div>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="gradStroke" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#33c7d8"/><stop offset="55%" stop-color="#13c98a"/><stop offset="100%" stop-color="#ffc93c"/>
+</linearGradient></defs></svg>
+
+<nav class="nav" id="nav" aria-label="Main">
+  <div class="nav-inner">
+    <a class="brand-logo" href="#/" data-route="#/" aria-label="Talent & Purpose Home">
+      <img src="tnp-logo-v1.png" alt="Talent & Purpose" />
+    </a>
+    <div class="nav-links">
+      <button type="button" data-route="#/services">Services</button>
+      <button type="button" data-route="#/industries">Industries</button>
+      <a href="#/#why" class="home-only" data-route="#/#why">About Us</a>
+      <a href="#/#global" class="home-only" data-route="#/#global">Global</a>
+      <a href="#/#contact" class="nav-cta magnetic" data-route="#/#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div id="home-view">
+
+  <header class="hero" id="top">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="aurora" aria-hidden="true"></div>
+    <div class="wrap hero-content">
+      <p class="eyebrow reveal">Workforce solutions — USA · Canada · India</p>
+      <h1>
+        <span class="line"><span class="l1">Building exceptional teams.</span></span>
+        <span class="line"><span class="l2">Accelerating exceptional careers.</span></span>
+      </h1>
+      <p class="hero-sub reveal">Talent &amp; Purpose is a workforce partner for companies that treat hiring as an engineering problem — precision-matched contingent, permanent, and project-based talent across twelve industries.</p>
+      <div class="hero-ctas reveal">
+        <a class="btn btn-primary magnetic" href="#/#contact" data-route="#/#contact">Hire talent <span class="arr">→</span></a>
+        <button class="btn btn-ghost magnetic" type="button" data-route="#/industries">Explore industries</button>
+      </div>
+      <div class="hero-meta reveal">
+        <span><i></i>Contingent</span><span><i></i>Permanent</span><span><i></i>Project teams</span><span><i></i>Payroll &amp; EOR</span>
+      </div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">Scroll</div>
+  </header>
+
+  <section class="stats" aria-label="Company statistics">
+    <div class="wrap stats-grid">
+      <div class="stat reveal"><div class="num"><span class="count" data-to="120">0</span><span class="suffix">+</span></div><div class="label">Companies served</div></div>
+      <div class="stat reveal"><div class="num"><span class="count" data-to="1400">0</span><span class="suffix">+</span></div><div class="label">Candidates placed</div></div>
+      <div class="stat reveal"><div class="num"><span class="count" data-to="12">0</span></div><div class="label">Industries covered</div></div>
+      <div class="stat reveal"><div class="num"><span class="count" data-to="94">0</span><span class="suffix">%</span></div><div class="label">Placement success</div></div>
+    </div>
+  </section>
+
+  <section id="solutions">
+    <div class="wrap">
+      <p class="eyebrow reveal">For employers</p>
+      <h2 class="h2 reveal">Four ways to build <em>your workforce.</em></h2>
+      <p class="lede reveal">From a single critical hire to an entire delivery team — engagement models that flex with your headcount plan, not against it. Select any service to see how it works.</p>
+      <div class="cards" id="serviceCards"></div>
+    </div>
+  </section>
+
+  <section id="industries" style="padding-top:36px">
+    <div class="wrap">
+      <p class="eyebrow reveal">Industries</p>
+      <h2 class="h2 reveal">Specialized desks. <em>Twelve verticals.</em></h2>
+      <p class="lede reveal">Each desk is run by recruiters who know the roles and the market. Open any industry to see how we support it.</p>
+      <div class="ind-grid" id="indGrid"></div>
+    </div>
+  </section>
+
+  <section id="why" style="padding-top:56px">
+    <div class="wrap">
+      <p class="eyebrow reveal">Why Talent &amp; Purpose</p>
+      <h2 class="h2 reveal">Hiring, run like an <em>engineering process.</em></h2>
+      <div class="timeline" id="timeline">
+        <div class="progress" id="tprogress"></div>
+        <div class="t-item reveal"><div class="step">01 — Define</div><h4>Role calibration, not a job description</h4><p>We map the outcome the hire must deliver, the skills that predict it, and the market reality of finding it.</p></div>
+        <div class="t-item reveal"><div class="step">02 — Source</div><h4>Warm networks over cold databases</h4><p>Our recruiters work from cultivated relationships in each vertical — not keyword scrapes of the same resume pools.</p></div>
+        <div class="t-item reveal"><div class="step">03 — Vet</div><h4>Technical screening with real depth</h4><p>Structured interviews, work-sample reviews, and reference validation before a profile ever reaches you.</p></div>
+        <div class="t-item reveal"><div class="step">04 — Place</div><h4>Shortlists measured in days</h4><p>You see three to five calibrated candidates, not thirty maybes. Interview logistics handled end to end.</p></div>
+        <div class="t-item reveal"><div class="step">05 — Support</div><h4>We stay through the first ninety days</h4><p>Onboarding check-ins, replacement guarantees, and payroll support until the hire is fully landed.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="career-hub" id="seekers">
+    <div class="hub-container">
+      <div class="hub-sticky">
+        <canvas id="hub-canvas" aria-label="Futuristic interactive career hub 3D environment"></canvas>
+        
+        <div id="hub-labels-layer">
+            <div class="portal-label" id="pl-0"><h3>Resume Engineering</h3><p>ATS-Optimized Architecture</p></div>
+            <div class="portal-label" id="pl-1"><h3>Interview Prep</h3><p>Technical Feedback Loops</p></div>
+            <div class="portal-label" id="pl-2"><h3>Fortune 500</h3><p>Global Network Access</p></div>
+            <div class="portal-label" id="pl-3"><h3>Employer Solutions</h3><p>Live Talent Pipelines</p></div>
+        </div>
+        
+        <div class="hub-ui wrap" id="hub-ui-intro">
+          <div class="hub-header">
+            <p class="eyebrow reveal">For job seekers</p>
+            <h2 class="h2 reveal">Step into your <em>future.</em></h2>
+            
+            <div class="everify-card reveal magnetic" title="Employment Eligibility Verification">
+                <div class="ev-particles"></div>
+                <img src="everify.png" alt="E-Verify Logo" class="ev-logo" />
+                <div class="ev-text">
+                    <span class="ev-title">Authorized Employer</span>
+                    <span class="ev-sub">Employment Eligibility Verification</span>
+                </div>
+            </div>
+
+            <div class="scroll-indicator-3d reveal">Scroll to enter the hub</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proof">
+    <div class="wrap">
+      <p class="eyebrow reveal">Proof</p>
+      <h2 class="h2 reveal">Teams we've helped <em>build.</em></h2>
+      <div class="quotes">
+        <figure class="quote reveal"><div class="mark">“</div><p>They understood the role better than some of our own hiring managers. The shortlist was three people; we hired two of them.</p><figcaption class="who"><span class="avatar">VP</span><span><b>VP of Engineering</b><small>SERIES B FINTECH</small></span></figcaption></figure>
+        <figure class="quote reveal"><div class="mark">“</div><p>We needed a fifteen-person claims processing team in six weeks. They delivered in four, fully compliant, fully onboarded.</p><figcaption class="who"><span class="avatar">DO</span><span><b>Director of Operations</b><small>HEALTHCARE NETWORK</small></span></figcaption></figure>
+        <figure class="quote reveal"><div class="mark">“</div><p>The offshore recruiting desk works while we sleep. Our time-to-shortlist dropped from three weeks to five days.</p><figcaption class="who"><span class="avatar">HT</span><span><b>Head of Talent</b><small>ENTERPRISE SaaS</small></span></figcaption></figure>
+      </div>
+      <div class="logo-marquee" aria-hidden="true"><div class="logo-track" id="logoTrack"></div></div>
+    </div>
+  </section>
+
+  <section id="global" style="padding-top:56px">
+    <div class="wrap globe-grid">
+      <div>
+        <p class="eyebrow reveal">Global reach</p>
+        <h2 class="h2 reveal">One network. <em>Three countries.</em></h2>
+        <p class="lede reveal">A follow-the-sun operating model: client partnerships in North America, backed by a dedicated recruiting and delivery engine in India.</p>
+        <div class="locations">
+          <div class="loc reveal"><span class="flag">US</span><b>United States</b><small>Client HQ · placements nationwide</small></div>
+          <div class="loc reveal"><span class="flag">CA</span><b>Canada</b><small>Cross-border staffing &amp; payroll</small></div>
+          <div class="loc reveal"><span class="flag">IN</span><b>India</b><small>Recruiting &amp; delivery center</small></div>
+        </div>
+      </div>
+      <canvas id="globe-canvas" aria-label="Interactive globe showing offices in the USA, Canada, and India"></canvas>
+    </div>
+  </section>
+
+  <section class="final" id="contact">
+    <div class="aurora2" aria-hidden="true"></div>
+    <div class="wrap">
+      <h2 class="reveal">Let's build<br/>what's next.</h2>
+      <p class="reveal">Tell us the role, the team, or the outcome — we'll come back within one business day with a plan.</p>
+      <a class="btn btn-primary magnetic reveal" href="mailto:hello@talentnpurpose.com" style="padding:20px 40px;font-size:1.05rem">Start a conversation <span class="arr">→</span></a>
+    </div>
+  </section>
+
+</div>
+
+<div id="detail-view" hidden></div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="newsletter">
+        <a class="brand-logo" href="#/" data-route="#/">
+          <img src="tnp-logo-v1.png" alt="Talent & Purpose" />
+        </a>
+        <p>Hiring intelligence, monthly. Market rates, talent trends, and what's actually working.</p>
+        <form class="nl-form" onsubmit="event.preventDefault();this.querySelector('button').textContent='✓ Joined';">
+          <input type="email" placeholder="Work email" aria-label="Work email" required />
+          <button type="submit">Join</button>
+        </form>
+      </div>
+      <div><h5>Services</h5><div id="footServices"></div></div>
+      <div><h5>Industries</h5><div id="footIndustries"></div></div>
+      <div><h5>Company</h5>
+        <a href="#/#why" data-route="#/#why">About Us</a>
+        <a href="#/#global" data-route="#/#global">Global Reach</a>
+        <a href="#/#proof" data-route="#/#proof">Client Stories</a>
+        <a href="#/#contact" data-route="#/#contact">Contact</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Talent &amp; Purpose. All rights reserved.</span>
+      <div class="socials"><a href="#" aria-label="LinkedIn">LinkedIn</a><a href="#" aria-label="X">X</a><a href="#" aria-label="Instagram">Instagram</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
