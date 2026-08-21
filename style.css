@@ -473,3 +473,19 @@ footer{border-top:1px solid var(--line);padding:76px 0 42px;background:var(--ink
 .related-card:hover,.related-card:focus-visible{transform:translateY(-4px);border-color:var(--line-strong)}
 .related-card b{font-family:var(--font-display);font-weight:600;font-size:1.02rem}
 .related-card small{display:block;color:var(--muted);font-size:.85rem;margin-top:6px}
+
+/* Mobile fallback: the WebGL scenes never initialize below this width (see isMobile in script.js) —
+   these rules replace them with a static layout instead of leaving blank canvases. */
+@media(max-width:820px){
+  #hero-canvas,#globe-canvas,#hub-canvas{display:none}
+  .career-hub{height:auto}
+  .hub-sticky{position:relative;height:auto;overflow:visible;display:block;padding:80px 0}
+  .hub-ui{padding-top:0}
+  .scroll-indicator-3d{display:none}
+  #hub-labels-layer{position:relative;inset:auto;display:grid;grid-template-columns:1fr 1fr;
+    gap:14px;margin-top:48px;overflow:visible;pointer-events:auto}
+  .portal-label{position:relative;left:auto;top:auto;opacity:1;transform:none;width:auto}
+}
+@media(max-width:520px){
+  #hub-labels-layer{grid-template-columns:1fr}
+}

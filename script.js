@@ -2,6 +2,7 @@
 "use strict";
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const hasHover = matchMedia('(hover:hover)').matches;
+const isMobile = matchMedia('(max-width:820px)').matches;
 
 const ACCENTS = { sea:'#33c7d8', emerald:'#13c98a', gold:'#ffc93c', teal:'#7fe6ea' };
 const accentCycle = ['sea','emerald','gold'];
@@ -316,7 +317,7 @@ window.addEventListener('load',()=>{
   setTimeout(()=>{ pre.style.transition='opacity .5s'; pre.style.opacity='0'; setTimeout(()=>pre.remove(),520); init(); }, 700);
 });
 
-if(typeof THREE!=='undefined'){
+if(typeof THREE!=='undefined' && !isMobile){
 
 (function(){
   const canvas=document.getElementById('hero-canvas');
