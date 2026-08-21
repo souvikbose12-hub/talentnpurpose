@@ -118,7 +118,7 @@ section{position:relative;padding:130px 0}
 .btn .arr{transition:transform .3s var(--ease)}
 .btn:hover .arr{transform:translateX(4px)}
 
-.hero{min-height:100vh;padding:0;display:flex;align-items:center;overflow:hidden}
+.hero{position:relative;min-height:100vh;padding:0;display:flex;align-items:center;overflow:hidden}
 #hero-canvas{position:absolute;inset:0;z-index:0}
 .hero .aurora{position:absolute;inset:-20%;z-index:1;pointer-events:none;
   background:radial-gradient(42% 38% at 18% 22%,rgba(51,199,216,.16),transparent 70%),
