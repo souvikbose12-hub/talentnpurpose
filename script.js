@@ -466,8 +466,8 @@ if(typeof THREE!=='undefined'){
       envGroup.position.set(0, 0, zPos - 30);
       
       if (i === 0) {
-          const count = 120;
-          const iMesh = new THREE.InstancedMesh(new THREE.PlaneGeometry(1.2, 1.6), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.15, side: THREE.DoubleSide, wireframe: true }), count);
+          const count = 50;
+          const iMesh = new THREE.InstancedMesh(new THREE.PlaneGeometry(1.5, 2), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.15, side: THREE.DoubleSide, wireframe: true }), count);
           const dummy = new THREE.Object3D();
           for(let j=0; j<count; j++) {
               dummy.position.set((Math.random()-0.5)*50, (Math.random()-0.5)*50, (Math.random()-0.5)*60);
@@ -478,8 +478,8 @@ if(typeof THREE!=='undefined'){
           zoneMeshes.push({ type: 'rotate', mesh: envGroup, speed: 0.001 });
           
       } else if (i === 1) {
-          const count = 80;
-          const iMesh = new THREE.InstancedMesh(new THREE.SphereGeometry(0.5, 8, 8), new THREE.MeshBasicMaterial({ color: zoneColors[i], wireframe: true, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending }), count);
+          const count = 35;
+          const iMesh = new THREE.InstancedMesh(new THREE.SphereGeometry(0.65, 8, 8), new THREE.MeshBasicMaterial({ color: zoneColors[i], wireframe: true, transparent: true, opacity: 0.4, blending: THREE.AdditiveBlending }), count);
           const dummy = new THREE.Object3D();
           for(let j=0; j<count; j++) {
               dummy.position.set((Math.random()-0.5)*60, (Math.random()-0.5)*40, (Math.random()-0.5)*60);
@@ -489,14 +489,14 @@ if(typeof THREE!=='undefined'){
           zoneMeshes.push({ type: 'pulse', mesh: envGroup, speed: 0.002 });
           
       } else if (i === 2) {
-          const count = 40;
-          const iMesh = new THREE.InstancedMesh(new THREE.BoxGeometry(3, 40, 3), new THREE.MeshBasicMaterial({ color: 0x121a20 }), count);
+          const count = 20;
+          const iMesh = new THREE.InstancedMesh(new THREE.BoxGeometry(3.6, 40, 3.6), new THREE.MeshBasicMaterial({ color: 0x121a20 }), count);
           const dummy = new THREE.Object3D();
           for(let j=0; j<count; j++) {
               dummy.position.set((Math.random()-0.5)*80, -25 + (Math.random()*10), (Math.random()-0.5)*80);
               dummy.updateMatrix(); iMesh.setMatrixAt(j, dummy.matrix);
           }
-          const edges = new THREE.InstancedMesh(new THREE.BoxGeometry(3.05, 40.05, 3.05), new THREE.MeshBasicMaterial({ color: zoneColors[i], wireframe: true, transparent: true, opacity: 0.1 }), count);
+          const edges = new THREE.InstancedMesh(new THREE.BoxGeometry(3.65, 40.05, 3.65), new THREE.MeshBasicMaterial({ color: zoneColors[i], wireframe: true, transparent: true, opacity: 0.1 }), count);
           for(let j=0; j<count; j++) {
               dummy.position.set((Math.random()-0.5)*80, -25 + (Math.random()*10), (Math.random()-0.5)*80);
               dummy.updateMatrix(); edges.setMatrixAt(j, dummy.matrix);
@@ -518,16 +518,16 @@ if(typeof THREE!=='undefined'){
       scene.add(envGroup);
   }
 
-  const dustCount = 1500;
+  const dustCount = 500;
   const dGeo = new THREE.BufferGeometry();
   const dPos = new Float32Array(dustCount * 3);
   for(let i=0; i<dustCount; i++) {
       dPos[i*3] = (Math.random() - 0.5) * 100;
       dPos[i*3+1] = (Math.random() - 0.5) * 80;
-      dPos[i*3+2] = 10 - (Math.random() * 450); 
+      dPos[i*3+2] = 10 - (Math.random() * 450);
   }
   dGeo.setAttribute('position', new THREE.BufferAttribute(dPos, 3));
-  const dMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.12, transparent: true, opacity: 0.3, blending: THREE.AdditiveBlending });
+  const dMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.16, transparent: true, opacity: 0.3, blending: THREE.AdditiveBlending });
   const dust = new THREE.Points(dGeo, dMat);
   scene.add(dust);
 
@@ -561,13 +561,16 @@ if(typeof THREE!=='undefined'){
   }
   resize(); window.addEventListener('resize', resize);
 
+  let hubVisible = true;
+  new IntersectionObserver(en => hubVisible = en[0].isIntersecting).observe(section);
+
   const tmpVec = new THREE.Vector3();
   const baseDark = new THREE.Color(0x080b0e);
   const activeTint = new THREE.Color();
-  
+
   (function render(time) {
       requestAnimationFrame(render);
-      if (homeView.hidden) return; 
+      if (homeView.hidden || !hubVisible) return;
 
       const t = time * 0.001;
 
