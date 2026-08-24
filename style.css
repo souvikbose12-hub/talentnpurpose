@@ -97,7 +97,22 @@ body.cursor-hover .cursor-ring{width:56px;height:56px;border-color:var(--sea)}
 .nav-links a:hover::after,.nav-links button:not(.nav-cta):hover::after,.nav-links [aria-current="page"]::after{transform:scaleX(1);transform-origin:left}
 .nav-cta{font-size:.85rem;font-weight:600;padding:10px 20px;border-radius:99px;background:var(--white);color:var(--ink);transition:transform .3s var(--ease),box-shadow .3s}
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(51,199,216,.4)}
-@media(max-width:860px){.nav-links{gap:18px}.nav-links a:not(.home-only),.nav-links button:not(.nav-cta){display:none}}
+.nav-toggle{display:none;position:relative;width:26px;height:18px;flex-direction:column;justify-content:space-between;cursor:pointer;z-index:110;flex-shrink:0}
+.nav-toggle span{display:block;height:2px;width:100%;background:var(--white);border-radius:2px;transition:transform .3s var(--ease),opacity .3s var(--ease)}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+body.nav-open{overflow:hidden}
+@media(max-width:860px){
+  .nav-toggle{display:flex}
+  .nav-links{position:fixed;top:var(--nav-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    background:rgba(8,11,14,.97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--line);padding:8px 24px 24px;
+    transform:translateY(-12px);opacity:0;pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease)}
+  .nav-links.open{opacity:1;transform:none;pointer-events:auto}
+  .nav-links a,.nav-links button{width:100%;text-align:left;padding:16px 0;font-size:1.02rem;border-bottom:1px solid var(--line)}
+  .nav-links .nav-cta{width:100%;justify-content:center;text-align:center;margin-top:14px;border-bottom:0;background:var(--white);color:var(--ink)}
+}
 
 .wrap{width:min(1240px,92vw);margin:0 auto}
 section{position:relative;padding:130px 0}

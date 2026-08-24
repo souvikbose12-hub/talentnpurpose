@@ -277,6 +277,21 @@ addEventListener('scroll', onScrollTimeline, {passive:true});
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>{ nav.classList.toggle('scrolled', scrollY>10); },{passive:true});
 
+const navToggle=document.getElementById('navToggle');
+const navLinksEl=document.getElementById('navLinks');
+function closeNavMenu(){
+  navLinksEl.classList.remove('open');
+  navToggle.setAttribute('aria-expanded','false');
+  document.body.classList.remove('nav-open');
+}
+navToggle.addEventListener('click',()=>{
+  const open=navLinksEl.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open?'true':'false');
+  document.body.classList.toggle('nav-open', open);
+});
+navLinksEl.addEventListener('click', e=>{ if(e.target.closest('[data-route]')) closeNavMenu(); });
+addEventListener('keydown', e=>{ if(e.key==='Escape') closeNavMenu(); });
+
 if(hasHover && !reduced){
   const dot=document.querySelector('.cursor-dot'), ring=document.querySelector('.cursor-ring');
   let x=0,y=0,rx=0,ry=0;
