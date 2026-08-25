@@ -194,6 +194,14 @@
         <label>Last name<input type="text" name="lastName" required autocomplete="family-name" /></label>
       </div>
       <label>Email address<input type="email" name="email" required autocomplete="email" /></label>
+      <label>Phone number
+        <div class="phone-row">
+          <select name="countryCode" id="countryCode" aria-label="Country code">
+            <option value="">Code</option>
+          </select>
+          <input type="tel" name="phone" autocomplete="tel" placeholder="(555) 123-4567" />
+        </div>
+      </label>
       <label>I am a...
         <select name="audience" required>
           <option value="" disabled selected>Select one</option>

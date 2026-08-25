@@ -492,7 +492,7 @@ footer{border-top:1px solid var(--line);padding:76px 0 42px;background:var(--ink
 .modal-overlay{position:fixed;inset:0;z-index:1500;display:flex;align-items:center;justify-content:center;
   background:rgba(3,5,7,.72);backdrop-filter:blur(6px);padding:24px;opacity:0;transition:opacity .3s var(--ease)}
 .modal-overlay.open{opacity:1}
-.modal-panel{width:min(520px,100%);max-height:88vh;overflow-y:auto;position:relative;
+.modal-panel{width:min(520px,100%);max-height:88vh;overflow-x:hidden;overflow-y:auto;position:relative;
   background:var(--ink-2);border:1px solid var(--line-strong);border-radius:var(--radius);
   padding:44px 36px;transform:translateY(18px) scale(.97);opacity:0;transition:transform .35s var(--ease),opacity .35s var(--ease)}
 .modal-overlay.open .modal-panel{transform:translateY(0) scale(1);opacity:1}
@@ -504,13 +504,16 @@ footer{border-top:1px solid var(--line);padding:76px 0 42px;background:var(--ink
 .modal-sub{color:var(--muted);margin-top:10px;font-size:.95rem}
 .contact-form{margin-top:28px;display:flex;flex-direction:column;gap:16px}
 .contact-form label{display:flex;flex-direction:column;gap:8px;font-family:var(--font-mono);
-  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
-.contact-form .cf-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);min-width:0}
+.contact-form .cf-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
 @media(max-width:520px){.contact-form .cf-row{grid-template-columns:1fr}}
+.contact-form .phone-row{display:flex;gap:10px}
+.contact-form .phone-row select{flex:0 0 150px;width:150px}
+.contact-form .phone-row input{flex:1;min-width:0}
 .contact-form input,.contact-form select,.contact-form textarea{
   font:inherit;font-size:.95rem;letter-spacing:normal;text-transform:none;color:var(--white);
   background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:13px 16px;
-  transition:border-color .25s}
+  transition:border-color .25s;width:100%;min-width:0}
 .contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--sea)}
 .contact-form textarea{resize:vertical;min-height:88px}
 .contact-form select{appearance:none;cursor:pointer}
