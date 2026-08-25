@@ -489,6 +489,50 @@ footer{border-top:1px solid var(--line);padding:76px 0 42px;background:var(--ink
 .related-card b{font-family:var(--font-display);font-weight:600;font-size:1.02rem}
 .related-card small{display:block;color:var(--muted);font-size:.85rem;margin-top:6px}
 
+.modal-overlay{position:fixed;inset:0;z-index:1500;display:flex;align-items:center;justify-content:center;
+  background:rgba(3,5,7,.72);backdrop-filter:blur(6px);padding:24px;opacity:0;transition:opacity .3s var(--ease)}
+.modal-overlay.open{opacity:1}
+.modal-panel{width:min(520px,100%);max-height:88vh;overflow-y:auto;position:relative;
+  background:var(--ink-2);border:1px solid var(--line-strong);border-radius:var(--radius);
+  padding:44px 36px;transform:translateY(18px) scale(.97);opacity:0;transition:transform .35s var(--ease),opacity .35s var(--ease)}
+.modal-overlay.open .modal-panel{transform:translateY(0) scale(1);opacity:1}
+.modal-close{position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;border:1px solid var(--line-strong);
+  color:var(--muted);transition:border-color .25s,color .25s}
+.modal-close:hover{border-color:var(--sea);color:var(--white)}
+.modal-panel h3{font-family:var(--font-display);font-weight:650;font-size:clamp(1.5rem,3vw,1.9rem);letter-spacing:-.02em}
+.modal-sub{color:var(--muted);margin-top:10px;font-size:.95rem}
+.contact-form{margin-top:28px;display:flex;flex-direction:column;gap:16px}
+.contact-form label{display:flex;flex-direction:column;gap:8px;font-family:var(--font-mono);
+  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.contact-form .cf-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:520px){.contact-form .cf-row{grid-template-columns:1fr}}
+.contact-form input,.contact-form select,.contact-form textarea{
+  font:inherit;font-size:.95rem;letter-spacing:normal;text-transform:none;color:var(--white);
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:13px 16px;
+  transition:border-color .25s}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--sea)}
+.contact-form textarea{resize:vertical;min-height:88px}
+.contact-form select{appearance:none;cursor:pointer}
+.contact-form select option{background:var(--ink-2);color:var(--white)}
+.contact-form .btn{margin-top:6px}
+.contact-form .btn:disabled{opacity:.6;cursor:not-allowed}
+.cf-status{font-size:.88rem;min-height:1.2em}
+.cf-status.ok{color:var(--emerald-2)}
+.cf-status.err{color:var(--gold)}
+body.modal-open{overflow:hidden}
+
+.toast{position:fixed;bottom:28px;left:50%;z-index:2000;display:flex;align-items:flex-start;gap:14px;
+  max-width:min(440px,90vw);background:var(--ink-2);border:1px solid var(--line-strong);border-radius:16px;
+  padding:16px 18px;box-shadow:0 20px 50px rgba(0,0,0,.5);
+  transform:translate(-50%,16px);opacity:0;pointer-events:none;transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.toast-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:rgba(19,201,138,.15);color:var(--emerald-2);font-weight:700}
+.toast p{margin:0;font-size:.92rem;color:var(--white);flex:1}
+.toast-close{flex-shrink:0;color:var(--muted);padding:4px;transition:color .25s}
+.toast-close:hover{color:var(--white)}
+
 /* Mobile fallback: the WebGL scenes never initialize below this width (see isMobile in script.js) —
    these rules replace them with a static layout instead of leaving blank canvases. */
 @media(max-width:820px){

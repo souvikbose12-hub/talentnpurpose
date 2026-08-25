@@ -332,6 +332,70 @@ window.addEventListener('load',()=>{
   setTimeout(()=>{ pre.style.transition='opacity .5s'; pre.style.opacity='0'; setTimeout(()=>pre.remove(),520); init(); }, 700);
 });
 
+const CONTACT_FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyFUj0gLCAJvjjTdr47oYE2XN6Q9iWm2Pn8RIDXjJ9IA_3ZdUZTT3qMaqe9DrlRritb5g/exec';
+const contactModal = document.getElementById('contactModal');
+const contactForm = document.getElementById('contactForm');
+const contactStatus = document.getElementById('contactStatus');
+const contactSubmit = document.getElementById('contactSubmit');
+let contactOpener = null;
+
+function openContactModal(opener){
+  contactOpener = opener || null;
+  contactModal.hidden = false;
+  requestAnimationFrame(()=>contactModal.classList.add('open'));
+  document.body.classList.add('modal-open');
+  contactModal.querySelector('input,select,textarea').focus();
+}
+function closeContactModal(){
+  contactModal.classList.remove('open');
+  document.body.classList.remove('modal-open');
+  setTimeout(()=>{ contactModal.hidden = true; }, 300);
+  if(contactOpener) contactOpener.focus();
+}
+document.getElementById('openContactModal').addEventListener('click', e=>openContactModal(e.currentTarget));
+document.getElementById('contactModalClose').addEventListener('click', closeContactModal);
+contactModal.addEventListener('click', e=>{ if(e.target===contactModal) closeContactModal(); });
+addEventListener('keydown', e=>{ if(e.key==='Escape' && !contactModal.hidden) closeContactModal(); });
+
+const formToast = document.getElementById('formToast');
+let toastTimer = null;
+function showToast(msg){
+  formToast.querySelector('p').textContent = msg;
+  formToast.hidden = false;
+  requestAnimationFrame(()=>formToast.classList.add('show'));
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(hideToast, 6000);
+}
+function hideToast(){
+  formToast.classList.remove('show');
+  clearTimeout(toastTimer);
+  setTimeout(()=>{ formToast.hidden = true; }, 350);
+}
+document.getElementById('toastClose').addEventListener('click', hideToast);
+
+contactForm.addEventListener('submit', async e=>{
+  e.preventDefault();
+  if(!contactForm.checkValidity()){ contactForm.reportValidity(); return; }
+  if(!CONTACT_FORM_ENDPOINT){ contactStatus.textContent='Form is not connected yet.'; contactStatus.className='cf-status err'; return; }
+  contactSubmit.disabled = true;
+  contactStatus.textContent = 'Sending...'; contactStatus.className='cf-status';
+  try{
+    await fetch(CONTACT_FORM_ENDPOINT, { method:'POST', mode:'no-cors', body:new FormData(contactForm) });
+    contactStatus.textContent = "Thanks — we'll be in touch within one business day.";
+    contactStatus.className = 'cf-status ok';
+    contactForm.reset();
+    setTimeout(()=>{
+      closeContactModal();
+      setTimeout(()=>showToast("Thanks — your message was submitted. We'll be in touch soon."), 350);
+    }, 1200);
+  }catch(err){
+    contactStatus.textContent = 'Something went wrong. Please try again or email hello@talentnpurpose.com.';
+    contactStatus.className = 'cf-status err';
+  }finally{
+    contactSubmit.disabled = false;
+  }
+});
+
 if(typeof THREE!=='undefined' && !isMobile){
 
 (function(){

@@ -177,10 +177,42 @@
     <div class="wrap">
       <h2 class="reveal">Let's build<br/>what's next.</h2>
       <p class="reveal">Tell us the role, the team, or the outcome — we'll come back within one business day with a plan.</p>
-      <a class="btn btn-primary magnetic reveal" href="mailto:hello@talentnpurpose.com" style="padding:20px 40px;font-size:1.05rem">Start a conversation <span class="arr">→</span></a>
+      <button type="button" class="btn btn-primary magnetic reveal" id="openContactModal" style="padding:20px 40px;font-size:1.05rem">Start a conversation <span class="arr">→</span></button>
     </div>
   </section>
 
+</div>
+
+<div class="modal-overlay" id="contactModal" hidden>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+    <button type="button" class="modal-close" id="contactModalClose" aria-label="Close">✕</button>
+    <h3 id="contactModalTitle">Let's build what's next.</h3>
+    <p class="modal-sub">Tell us a bit about you and we'll come back within one business day.</p>
+    <form id="contactForm" class="contact-form" novalidate>
+      <div class="cf-row">
+        <label>First name<input type="text" name="firstName" required autocomplete="given-name" /></label>
+        <label>Last name<input type="text" name="lastName" required autocomplete="family-name" /></label>
+      </div>
+      <label>Email address<input type="email" name="email" required autocomplete="email" /></label>
+      <label>I am a...
+        <select name="audience" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Employer">Employer</option>
+          <option value="Job Seeker">Job Seeker</option>
+        </select>
+      </label>
+      <label>Availability<input type="text" name="availability" placeholder="e.g. Immediately, 2 weeks notice, Q1 2026" /></label>
+      <label>Specific requirements?<textarea name="requirements" rows="4" placeholder="Tell us about the role, team, or what you're looking for"></textarea></label>
+      <button type="submit" class="btn btn-primary" id="contactSubmit" style="width:100%;justify-content:center">Send message <span class="arr">→</span></button>
+      <p class="cf-status" id="contactStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="formToast" role="status" aria-live="polite" hidden>
+  <span class="toast-icon" aria-hidden="true">✓</span>
+  <p>Your message was submitted — we'll be in touch soon.</p>
+  <button type="button" class="toast-close" id="toastClose" aria-label="Dismiss notification">✕</button>
 </div>
 
 <div id="detail-view" hidden></div>
